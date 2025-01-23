@@ -1,0 +1,38 @@
+name: Deploy to IIS
+
+on:
+  push:
+    branches:
+      - main  # 'main' branch'e push yapıldığında çalışacak
+
+jobs:
+  deploy:
+    runs-on: self-hosted  # Self-hosted runner kullanılacak
+
+    steps:
+      # 1. Kodun Repo'dan Checkout Edilmesi
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      # 2. IIS'e Deploy İşlemi
+      - name: Deploy to IIS
+        run: |
+          $sourcePath = "${{ github.workspace }}"  # GitHub Actions çalışma dizini
+          $destinationPath = "C:\inetpub\wwwroot\word-changer"  # IIS hedef klasörü
+
+          # Mevcut hedef klasörü temizle
+          if (Test-Path $destinationPath) {
+              Remove-Item -Recurse -Force $destinationPath
+          }
+
+          # Hedef klasörü oluştur
+          New-Item -ItemType Directory -Force -Path $destinationPath
+
+          # Tüm dosyaları hedef klasöre kopyala
+          Copy-Item -Path "$sourcePath\*" -Destination $destinationPath -Recurse
+
+          # IIS Uygulama Havuzunu Yeniden Başlat
+          Import-Module WebAdministration
+          Restart-WebAppPool -Name "DefaultAppPool"
+
+          Write-Host "Deployment to IIS completed."
