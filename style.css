@@ -1,0 +1,71 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url(img/background.jpg);
+    background-position: 0;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+}
+.container{
+    text-align: center;
+    margin-top: 150px;  
+}
+#head{
+    margin-top: 2px;
+    font-size: 30px;
+    color: crimson;
+}
+#toDoText{
+    height: 20px;
+    width: 300px;
+    outline: none;
+    border: 1px solid#f8efed;
+    border-radius: 15px;
+    color:crimson;   
+}
+#toDoAdd{
+   width: 75px;
+   height: 25px;
+   border: 1px solid black;
+   outline: none;
+   cursor: pointer;
+   background-color: crimson;
+   font-size: 15px;
+   text-align: center;
+   color: white;
+   border-radius: 10px;
+}
+#toDoDelete{
+    width: 75px;
+    height: 25px;
+    border: 1px solid black;
+    outline: none;
+    cursor: pointer;
+    background-color: crimson;
+    font-size: 15px;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+ }
+ #toDoAdd:active{
+    background-color: white;
+    color: crimson;
+ }
+ #toDoDelete:active{
+    background-color: white;
+    color: crimson;
+ }
+ .paragraph-styling{
+    margin: 12px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 25px;
+    text-transform: capitalize;
+    color: white;
+}
+ #toDoContainer{
+    margin-top: 40px;   
+}
